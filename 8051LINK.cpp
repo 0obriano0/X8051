@@ -10,8 +10,24 @@ char filenamebyload[3][50] = {".asm",".obj",".tsk"};
 
 int main(){
 	char filename[100];
-	std::cout << "請輸入檔案名稱(不含副檔名):"; 
-	scanf("%s",&filename);
+	char checkfile[100] = "";
+	FILE *pf;
+	do{
+		if(pf == NULL)
+			fclose(pf);
+		std::cout << "請輸入檔案名稱(不含副檔名):";
+		scanf("%s",&filename);
+		strcat(checkfile,filename);
+		strcat(checkfile,filenamebyload[0]);
+		pf = fopen(checkfile,"r");
+		if(pf == NULL){
+			system("cls");
+			std::cout << "找不到 " << checkfile << " 檔案請確認檔名是否正確" << std::endl;
+			checkfile[0] = '\0';
+		} 
+	}while(pf == NULL);
+	fclose(pf);
+	
 	
 	for(int loopnum1 = 0 ; loopnum1 < 3; loopnum1++){
 		char buffer[100] = "";
@@ -22,12 +38,12 @@ int main(){
 			strcat(buffer,filenamebyload[loopnum1]);
 		}else{
 			Sleep(1500);
-			FILE *pf;
-			pf = fopen("2.txt","w");
+			FILE *pf2;
+			pf2 = fopen("2.txt","w");
 			
-			if(pf != NULL){
-				fprintf(pf,"%s%s\n\n\n\n\nX\nX",filename,filenamebyload[loopnum1]);
-				fclose(pf);
+			if(pf2 != NULL){
+				fprintf(pf2,"%s%s\n\n\n\n\nX\nX",filename,filenamebyload[loopnum1]);
+				fclose(pf2);
 			}
 			strcat(buffer,"< 2.txt");
 		}
