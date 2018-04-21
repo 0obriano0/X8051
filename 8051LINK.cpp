@@ -42,7 +42,7 @@ int main(){
 			pf2 = fopen("2.txt","w");
 			
 			if(pf2 != NULL){
-				fprintf(pf2,"%s%s\n\n\n\n\nX\nX",filename,filenamebyload[loopnum1]);
+				fprintf(pf2,"%s%s\n\n\n\nX\nX\nX",filename,filenamebyload[loopnum1]);
 				fclose(pf2);
 			}
 			strcat(buffer,"< 2.txt");
